@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:epubx/epub.dart' as epub;
+import 'package:epubx/epubx.dart' as epub;
 import 'package:image/image.dart' as image;
 
 void main() => runApp(EpubWidget());
@@ -110,28 +110,13 @@ Widget buildEpubWidget(epub.EpubBookRef book) {
   return Container(
       child: new Column(
     children: <Widget>[
-      Text(
-        "Title",
-        style: TextStyle(fontSize: 20.0),
-      ),
-      Text(
-        book.Title,
-        style: TextStyle(fontSize: 15.0),
-      ),
-      new Padding(
-        padding: EdgeInsets.only(top: 15.0),
-      ),
-      Text(
-        "Author",
-        style: TextStyle(fontSize: 20.0),
-      ),
-      Text(
-        book.Author,
-        style: TextStyle(fontSize: 15.0),
-      ),
-      new Padding(
-        padding: EdgeInsets.only(top: 15.0),
-      ),
+      Text("Title", style: TextStyle(fontSize: 20.0)),
+      Text(book.Title, style: TextStyle(fontSize: 15.0)),
+      new Padding(padding: EdgeInsets.only(top: 15.0)),
+      Text("Author", style: TextStyle(fontSize: 20.0)),
+      Text(book.Author, style: TextStyle(fontSize: 15.0)),
+      new Padding(padding: EdgeInsets.only(top: 15.0)),
+
       FutureBuilder<List<epub.EpubChapterRef>>(
           future: chapters,
           builder: (context, snapshot) {
@@ -150,9 +135,11 @@ Widget buildEpubWidget(epub.EpubBookRef book) {
             }
             return Container();
           }),
+
       new Padding(
         padding: EdgeInsets.only(top: 15.0),
       ),
+
       FutureBuilder<epub.Image>(
         future: cover,
         builder: (context, snapshot) {
@@ -169,6 +156,7 @@ Widget buildEpubWidget(epub.EpubBookRef book) {
           return Container();
         },
       ),
+      
     ],
   ));
 }
